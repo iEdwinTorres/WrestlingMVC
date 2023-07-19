@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WrestlingMVC.Data
 {
@@ -7,16 +10,15 @@ namespace WrestlingMVC.Data
 		[Key]
 		public int Id { get; set; }
 
-		[Required]
-		public int Title_Id { get; set; }
+		[ForeignKey(nameof(ChampionshipId))]
+		public virtual Championship ChampionshipId { get; set; }
+
+		[ForeignKey(nameof(WrestlerId))]
+		public virtual Wrestler WrestlerId { get; set; }
 
 		[Required]
-		public int Wrestle_Id { get; set; }
+		public DateTime ReignDateStart { get; set; }
 
-		[Required]
-		public DateTime DateStart { get; set; }
-
-		[Required]
-		public DateTime DateEnd { get; set; }
+		public DateTime? ReignDateEnd { get; set; }
 	}
 }

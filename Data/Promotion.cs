@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace WrestlingMVC.Data
@@ -5,21 +6,23 @@ namespace WrestlingMVC.Data
 	public class Promotion
 	{
 		[Key]
-		public int Id { get; set; }
-
-		[Required, MaxLength(100)]
-		public string Name { get; set; } = string.Empty;
-
-		[Required, MaxLength(100)]
-		public string Logo { get; set; } = string.Empty;
+		public int PromotionId { get; set; }
 
 		[Required]
-		public bool Defunct { get; set; }
+		[MaxLength(100)]
+		public string? PromotionName { get; set; }
 
 		[Required]
-		public DateTime Established { get; set; }
+		[MaxLength(100)]
+		public string? PromotionLogo { get; set; }
 
 		[Required]
-		public DateTime Shuttered { get; set; }
+		public bool PromotionDefunct { get; set; }
+
+		[Required]
+		public DateTime PromotionEstablished { get; set; }
+
+		[Required]
+		public DateTime PromotionShuttered { get; set; }
 	}
 }

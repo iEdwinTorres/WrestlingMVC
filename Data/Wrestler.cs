@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace WrestlingMVC.Data
@@ -5,21 +6,20 @@ namespace WrestlingMVC.Data
 	public class Wrestler
 	{
 		[Key]
-		public int Id { get; set; }
-
-		[Required, MaxLength(100)]
-		public string Name { get; set; } = string.Empty;
-
-		[Required, MaxLength(100)]
-		public string Picture { get; set; } = string.Empty;
+		public int WrestlerId { get; set; }
 
 		[Required]
-		public bool Retired { get; set; }
+		[MaxLength(100)]
+		public string? WrestlerName { get; set; }
+
+		[MaxLength(100)]
+		public string? WrestlerPicture { get; set; }
 
 		[Required]
-		public DateTime DateStart { get; set; }
+		public bool WrestlerRetired { get; set; }
 
-		[Required]
-		public DateTime DateEnd { get; set; }
+		public DateTime? WrestlerDateStart { get; set; }
+
+		public DateTime? WrestlerDateEnd { get; set; }
 	}
 }
