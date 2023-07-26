@@ -6,23 +6,23 @@ namespace WrestlingMVC.Data
 	public class Promotion
 	{
 		[Key]
-		public int PromotionId { get; set; }
+		public int Id { get; set; }
 
 		[Required]
 		[MaxLength(100)]
-		public string? PromotionName { get; set; }
+		public string? Name { get; set; }
 
 		[Required]
 		[MaxLength(100)]
-		public string? PromotionLogo { get; set; }
+		public string? Logo { get; set; }
 
 		[Required]
-		public bool PromotionDefunct { get; set; }
+		public bool Defunct { get; set; }
 
 		[Required]
-		public DateTime PromotionEstablished { get; set; }
+		public DateTime Established { get; set; }
 
 		[Required]
-		public DateTime PromotionShuttered { get; set; }
+		public DateTime Shuttered { get; set; }
 	}
 }

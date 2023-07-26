@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using WrestlingMVC.Data;
+using WrestlingMVC.Services.Championships;
+using WrestlingMVC.Services.Promotions;
+using WrestlingMVC.Services.Wrestlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WrestlingDbContext>(options => options.UseSqlServer(
 	 builder.Configuration.GetConnectionString("DefaultConnection")
 ));
+
+builder.Services.AddScoped<IChampionshipService, ChampionshipService>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
+builder.Services.AddScoped<IWrestlerService, WrestlerService>();
 
 var app = builder.Build();
 
