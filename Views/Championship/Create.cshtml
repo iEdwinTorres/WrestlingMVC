@@ -1,0 +1,80 @@
+@model ChampionshipCreate
+@{
+	ViewData["Title"] = "Create a Championship";
+}
+
+<h1>Create a Championship</h1>
+<hr>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post" class="row g-3">
+	<div class="col-ms-6">
+		<label asp-for="PromotionId" class="form-label">Promotion</label>
+		<input asp-for="PromotionId" class="form-control">
+		<span asp-validation-for="PromotionId" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6">
+		<label asp-for="Name" class="form-label"></label>
+		<input asp-for="Name" class="form-control">
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6">
+		<label asp-for="Image" class="form-label"></label>
+		<input asp-for="Image" class="form-control">
+		<span asp-validation-for="Image" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Status">Active</label>
+		<input asp-for="Status" type="checkbox" class="form-check-input" />
+		<span asp-validation-for="Status" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6">
+		<label asp-for="Established" class="form-label"></label>
+		<input asp-for="Established" class="form-control">
+		<span asp-validation-for="Established" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6" id="retiredField">
+		<label asp-for="Retired" class="form-label"></label>
+		<input asp-for="Retired" class="form-control">
+		<span asp-validation-for="Retired" class="text-danger"></span>
+	</div>
+
+	<div class="col d-flex justify-content-between align-items-baseline">
+		<a asp-action="Index">Back to List</a>
+		<input type="submit" value="Create" class="btn btn-primary">
+	</div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script>
+		// Function to toggle visibility and required validation of the Retired field
+		function toggleRetiredField() {
+			const retiredField = document.getElementById("retiredField");
+			const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+			const retiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
+
+			if (statusCheckbox && retiredField && retiredInput) {
+					if (statusCheckbox.checked) {
+						retiredField.style.display = "none";
+						retiredInput.removeAttribute("required");
+					} else {
+						retiredField.style.display = "block";
+						retiredInput.setAttribute("required", "required");
+					}
+			}
+		}
+
+		// Add event listener to the Status checkbox to handle changes
+		const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+		statusCheckbox.addEventListener("change", toggleRetiredField);
+
+		// Initial call to toggle the field visibility on page load
+		toggleRetiredField();
+	</script>
+}

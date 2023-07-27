@@ -12,6 +12,20 @@ public class WrestlerService : IWrestlerService
 		_context = context;
 	}
 
+	public async Task<bool> CreateWrestlerAsync(WrestlerCreate model)
+	{
+		Wrestler entity = new()
+		{
+			Name = model.Name,
+			Picture = model.Picture,
+			Status = model.Status,
+			DateStart = model.DateStart,
+			DateEnd = model.DateEnd
+		};
+		_context.Wrestlers.Add(entity);
+		return await _context.SaveChangesAsync() == 1;
+	}
+
 	public async Task<IEnumerable<WrestlerListItem>> GetAllWrestlersAsync()
 	{
 		List<WrestlerListItem> wrestlers = await _context.Wrestlers

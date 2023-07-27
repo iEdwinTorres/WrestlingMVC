@@ -5,4 +5,5 @@ namespace WrestlingMVC.Services.Championships;
 public interface IChampionshipService
 {
 	Task<IEnumerable<ChampionshipListItem>> GetAllChampionshipsAsync();
+	Task<bool> CreateChampionshipAsync(ChampionshipCreate model);
 }

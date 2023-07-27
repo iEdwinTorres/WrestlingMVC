@@ -18,4 +18,21 @@ public class WrestlerController : Controller
 		IEnumerable<WrestlerListItem> wrestlers = await _service.GetAllWrestlersAsync();
 		return View(wrestlers);
 	}
+
+	[HttpGet]
+	public IActionResult Create()
+	{
+		return View();
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Create(WrestlerCreate model)
+	{
+		if (!ModelState.IsValid)
+			return View(model);
+
+	await _service.CreateWrestlerAsync(model);
+
+	return RedirectToAction(nameof(Index));
+	}
 }

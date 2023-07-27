@@ -18,4 +18,21 @@ public class PromotionController : Controller
 		IEnumerable<PromotionListItem> promotions = await _service.GetAllPromotionsAsync();
 		return View(promotions);
 	}
+
+	[HttpGet]
+	public IActionResult Create()
+	{
+		return View();
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Create(PromotionCreate model)
+	{
+		if (!ModelState.IsValid)
+			return View(model);
+
+	await _service.CreatePromotionAsync(model);
+
+	return RedirectToAction(nameof(Index));
+	}
 }

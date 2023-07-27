@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WrestlingMVC.Data
 {
@@ -9,16 +8,13 @@ namespace WrestlingMVC.Data
 		[Key]
 		public int Id { get; set; }
 
-		[ForeignKey(nameof(PromotionId))]
+		[Required]
 		public int PromotionId { get; set; }
-		public virtual Promotion Promotion { get; set; } = null!;
 
 		[Required]
-		[MaxLength(100)]
+		[StringLength(100)]
 		public string? Name { get; set; }
 
-		[Required]
-		[MaxLength(100)]
 		public string? Image { get; set; }
 
 		[Required]
@@ -26,7 +22,12 @@ namespace WrestlingMVC.Data
 
 		[Required]
 		public DateTime Established { get; set; }
-		
-		public DateTime Retired { get; set; }
+
+		// Nullable DateTime property
+		public DateTime? Retired { get; set; }
+
+		// Navigation property to the Promotion entity
+		[Required]
+		public virtual Promotion? Promotion { get; set; }
 	}
 }

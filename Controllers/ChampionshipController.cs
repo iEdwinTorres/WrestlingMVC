@@ -18,4 +18,21 @@ public class ChampionshipController : Controller
 		IEnumerable<ChampionshipListItem> championships = await _service.GetAllChampionshipsAsync();
 		return View(championships);
 	}
+
+	[HttpGet]
+	public IActionResult Create()
+	{
+		return View();
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Create(ChampionshipCreate model)
+	{
+		if (!ModelState.IsValid)
+			return View(model);
+
+	await _service.CreateChampionshipAsync(model);
+
+	return RedirectToAction(nameof(Index));
+	}
 }

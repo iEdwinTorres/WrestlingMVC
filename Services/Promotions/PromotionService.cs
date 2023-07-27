@@ -12,6 +12,20 @@ public class PromotionService : IPromotionService
 		_context = context;
 	}
 
+	public async Task<bool> CreatePromotionAsync(PromotionCreate model)
+	{
+		Promotion entity = new()
+		{
+			Name = model.Name,
+			Logo = model.Logo,
+			Status = model.Status,
+			Established = model.Established,
+			Shuttered = model.Shuttered
+		};
+		_context.Promotions.Add(entity);
+		return await _context.SaveChangesAsync() == 1;
+	}
+
 	public async Task<IEnumerable<PromotionListItem>> GetAllPromotionsAsync()
 	{
 		List<PromotionListItem> promotions = await _context.Promotions

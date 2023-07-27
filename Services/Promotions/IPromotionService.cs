@@ -5,4 +5,6 @@ namespace WrestlingMVC.Services.Promotions;
 public interface IPromotionService
 {
 	Task<IEnumerable<PromotionListItem>> GetAllPromotionsAsync();
+	Task<bool> CreatePromotionAsync(PromotionCreate model);
+
 }

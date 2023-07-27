@@ -1,0 +1,74 @@
+@model PromotionCreate
+@{
+	ViewData["Title"] = "Create a Promotion";
+}
+
+<h1>Create a Promotion</h1>
+<hr>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post" class="row g-3">
+	<div class="col-ms-6">
+		<label asp-for="Name" class="form-label"></label>
+		<input asp-for="Name" class="form-control">
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6">
+		<label asp-for="Logo" class="form-label"></label>
+		<input asp-for="Logo" class="form-control">
+		<span asp-validation-for="Logo" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Status">Active</label>
+		<input asp-for="Status" type="checkbox" class="form-check-input" />
+		<span asp-validation-for="Status" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6">
+		<label asp-for="Established" class="form-label"></label>
+		<input asp-for="Established" class="form-control">
+		<span asp-validation-for="Established" class="text-danger"></span>
+	</div>
+
+	<div class="col-ms-6" id="shutteredField">
+		<label asp-for="Shuttered" class="form-label"></label>
+		<input asp-for="Shuttered" class="form-control">
+		<span asp-validation-for="Shuttered" class="text-danger"></span>
+	</div>
+
+	<div class="col d-flex justify-content-between align-items-baseline">
+		<a asp-action="Index">Back to List</a>
+		<input type="submit" value="Create" class="btn btn-primary">
+	</div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script>
+		// Function to toggle visibility and required validation of the Shuttered field
+		function toggleShutteredField() {
+			const ShutteredField = document.getElementById("ShutteredField");
+			const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+			const ShutteredInput = document.getElementById("@Html.IdFor(m => m.Shuttered)");
+
+			if (statusCheckbox && ShutteredField && ShutteredInput) {
+					if (statusCheckbox.checked) {
+						ShutteredField.style.display = "none";
+						ShutteredInput.removeAttribute("required");
+					} else {
+						ShutteredField.style.display = "block";
+						ShutteredInput.setAttribute("required", "required");
+					}
+			}
+		}
+
+		// Add event listener to the Status checkbox to handle changes
+		const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+		statusCheckbox.addEventListener("change", toggleShutteredField);
+
+		// Initial call to toggle the field visibility on page load
+		toggleShutteredField();
+	</script>
+}
