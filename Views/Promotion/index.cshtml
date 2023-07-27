@@ -13,6 +13,12 @@
 			<th>
 				@Html.DisplayNameFor(model => model.Status)
 			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Established)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Shuttered)
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,6 +30,12 @@
 				</td>
 				<td>
 					@item.Status
+				</td>
+				<td>
+					@item.Established
+				</td>
+				<td>
+					@item.Shuttered
 				</td>
 			</tr>
 		}

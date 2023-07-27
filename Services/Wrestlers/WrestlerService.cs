@@ -19,7 +19,9 @@ public class WrestlerService : IWrestlerService
 			{
 				Id = w.Id,
 				Name = w.Name,
-				Status = w.Status
+				Status = w.Status,
+				DateStart = w.DateStart,
+				DateEnd = w.DateEnd
 			}).ToListAsync();
 
 		return wrestlers;
