@@ -17,9 +17,9 @@ public class PromotionService : IPromotionService
 		List<PromotionListItem> promotions = await _context.Promotions
 			.Select(p => new PromotionListItem()
 			{
-				PromotionId = p.Id,
-				PromotionName = p.Name,
-				PromotionDefunct = p.Defunct
+				Id = p.Id,
+				Name = p.Name,
+				Defunct = p.Defunct
 			}).ToListAsync();
 
 		return promotions;

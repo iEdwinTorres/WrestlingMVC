@@ -2,7 +2,7 @@ namespace WrestlingMVC.Models.Championship;
 
 public class ChampionshipListItem
 {
-	public int ChampionshipId { get; set; }
-	public string? ChampionshipName { get; set; }
-	public bool ChampionshipDefunct { get; set; }
+	public int Id { get; set; }
+	public string? Name { get; set; }
+	public bool Defunct { get; set; }
 }

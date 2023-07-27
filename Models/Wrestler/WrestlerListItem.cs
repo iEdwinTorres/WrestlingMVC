@@ -2,7 +2,7 @@ namespace WrestlingMVC.Models.Wrestler;
 
 public class WrestlerListItem
 {
-	public int WrestlerId { get; set; }
-	public string? WrestlerName { get; set; }
-	public bool WrestlerRetired { get; set; }
+	public int Id { get; set; }
+	public string? Name { get; set; }
+	public bool Retired { get; set; }
 }

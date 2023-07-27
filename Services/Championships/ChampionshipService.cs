@@ -17,9 +17,9 @@ public class ChampionshipService : IChampionshipService
 		List<ChampionshipListItem> championships = await _context.Championships
 			.Select(c => new ChampionshipListItem()
 			{
-				ChampionshipId = c.Id,
-				ChampionshipName = c.Name,
-				ChampionshipDefunct = c.Defunct
+				Id = c.Id,
+				Name = c.Name,
+				Defunct = c.Defunct
 			}).ToListAsync();
 
 		return championships;

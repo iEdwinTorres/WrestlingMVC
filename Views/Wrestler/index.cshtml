@@ -1,9 +1,9 @@
-@model IEnumerable<PromotionListItem>
+@model IEnumerable<WrestlerListItem>
 @{
-	ViewData["Title"] = "Promotion Index";
+	ViewData["Title"] = "Wrestler Index";
 }
 
-<h1>Promotion Index</h1>
+<h1>Wrestler Index</h1>
 <table class="table">
 	<thead>
 		<tr>
@@ -11,7 +11,7 @@
 				@Html.DisplayNameFor(model => model.Name)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.Defunct)
+				@Html.DisplayNameFor(model => model.Retired)
 			</th>
 		</tr>
 	</thead>
@@ -23,7 +23,7 @@
 					@item.Name
 				</td>
 				<td>
-					@item.Defunct
+					@item.Retired
 				</td>
 			</tr>
 		}

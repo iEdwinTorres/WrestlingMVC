@@ -2,7 +2,7 @@ namespace WrestlingMVC.Models.Promotion;
 
 public class PromotionListItem
 {
-	public int PromotionId { get; set; }
-	public string? PromotionName { get; set; }
-	public bool PromotionDefunct { get; set; }
+	public int Id { get; set; }
+	public string? Name { get; set; }
+	public bool Defunct { get; set; }
 }

@@ -17,9 +17,9 @@ public class WrestlerService : IWrestlerService
 		List<WrestlerListItem> wrestlers = await _context.Wrestlers
 			.Select(w => new WrestlerListItem()
 			{
-				WrestlerId = w.Id,
-				WrestlerName = w.Name,
-				WrestlerRetired = w.Retired
+				Id = w.Id,
+				Name = w.Name,
+				Retired = w.Retired
 			}).ToListAsync();
 
 		return wrestlers;
