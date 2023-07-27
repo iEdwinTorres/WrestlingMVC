@@ -8,10 +8,10 @@ namespace WrestlingMVC.Data
 		[Key]
 		public int Id { get; set; }
 
-		[ForeignKey(nameof(ChampionshipId))]
+		[ForeignKey(nameof(Championship))]
 		public virtual Championship? ChampionshipId { get; set; }
 
-		[ForeignKey(nameof(WrestlerId))]
+		[ForeignKey(nameof(Wrestler))]
 		public virtual Wrestler? WrestlerId { get; set; }
 
 		[Required]
