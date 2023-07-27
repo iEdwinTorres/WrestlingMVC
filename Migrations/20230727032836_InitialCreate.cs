@@ -75,8 +75,8 @@ namespace WrestlingMVC.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Championship = table.Column<int>(type: "int", nullable: true),
-                    Wrestler = table.Column<int>(type: "int", nullable: true),
+                    ChampionshipId = table.Column<int>(type: "int", nullable: true),
+                    WrestlerId = table.Column<int>(type: "int", nullable: true),
                     ReignDateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReignDateEnd = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -84,13 +84,13 @@ namespace WrestlingMVC.Migrations
                 {
                     table.PrimaryKey("PK_Reigns", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reigns_Championships_Championship",
-                        column: x => x.Championship,
+                        name: "FK_Reigns_Championships_ChampionshipId",
+                        column: x => x.ChampionshipId,
                         principalTable: "Championships",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Reigns_Wrestlers_Wrestler",
-                        column: x => x.Wrestler,
+                        name: "FK_Reigns_Wrestlers_WrestlerId",
+                        column: x => x.WrestlerId,
                         principalTable: "Wrestlers",
                         principalColumn: "Id");
                 });
@@ -101,14 +101,14 @@ namespace WrestlingMVC.Migrations
                 column: "PromotionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reigns_Championship",
+                name: "IX_Reigns_ChampionshipId",
                 table: "Reigns",
-                column: "Championship");
+                column: "ChampionshipId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reigns_Wrestler",
+                name: "IX_Reigns_WrestlerId",
                 table: "Reigns",
-                column: "Wrestler");
+                column: "WrestlerId");
         }
 
         /// <inheritdoc />

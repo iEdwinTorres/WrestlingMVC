@@ -99,7 +99,7 @@ namespace WrestlingMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Championship")
+                    b.Property<int?>("ChampionshipId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ReignDateEnd")
@@ -108,14 +108,14 @@ namespace WrestlingMVC.Migrations
                     b.Property<DateTime>("ReignDateStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Wrestler")
+                    b.Property<int?>("WrestlerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Championship");
+                    b.HasIndex("ChampionshipId");
 
-                    b.HasIndex("Wrestler");
+                    b.HasIndex("WrestlerId");
 
                     b.ToTable("Reigns");
                 });
@@ -164,17 +164,17 @@ namespace WrestlingMVC.Migrations
 
             modelBuilder.Entity("WrestlingMVC.Data.Reign", b =>
                 {
-                    b.HasOne("WrestlingMVC.Data.Championship", "ChampionshipId")
+                    b.HasOne("WrestlingMVC.Data.Championship", "Championship")
                         .WithMany()
-                        .HasForeignKey("Championship");
+                        .HasForeignKey("ChampionshipId");
 
-                    b.HasOne("WrestlingMVC.Data.Wrestler", "WrestlerId")
+                    b.HasOne("WrestlingMVC.Data.Wrestler", "Wrestler")
                         .WithMany()
-                        .HasForeignKey("Wrestler");
+                        .HasForeignKey("WrestlerId");
 
-                    b.Navigation("ChampionshipId");
+                    b.Navigation("Championship");
 
-                    b.Navigation("WrestlerId");
+                    b.Navigation("Wrestler");
                 });
 #pragma warning restore 612, 618
         }
