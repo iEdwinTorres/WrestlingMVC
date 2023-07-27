@@ -22,7 +22,7 @@ namespace WrestlingMVC.Data
 		public string? Image { get; set; }
 
 		[Required]
-		public bool Defunct { get; set; }
+		public bool Status { get; set; }
 
 		[Required]
 		public DateTime Established { get; set; }

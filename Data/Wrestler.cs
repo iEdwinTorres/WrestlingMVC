@@ -16,7 +16,7 @@ namespace WrestlingMVC.Data
 		public string? Picture { get; set; }
 
 		[Required]
-		public bool Retired { get; set; }
+		public bool Status { get; set; }
 
 		public DateTime? DateStart { get; set; }
 

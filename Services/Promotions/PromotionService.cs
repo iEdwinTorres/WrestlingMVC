@@ -19,7 +19,7 @@ public class PromotionService : IPromotionService
 			{
 				Id = p.Id,
 				Name = p.Name,
-				Defunct = p.Defunct
+				Status = p.Status
 			}).ToListAsync();
 
 		return promotions;

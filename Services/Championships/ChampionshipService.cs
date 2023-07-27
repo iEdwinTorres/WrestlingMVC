@@ -19,7 +19,7 @@ public class ChampionshipService : IChampionshipService
 			{
 				Id = c.Id,
 				Name = c.Name,
-				Defunct = c.Defunct
+				Status = c.Status
 			}).ToListAsync();
 
 		return championships;

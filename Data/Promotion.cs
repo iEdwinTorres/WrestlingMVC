@@ -17,7 +17,7 @@ namespace WrestlingMVC.Data
 		public string? Logo { get; set; }
 
 		[Required]
-		public bool Defunct { get; set; }
+		public bool Status { get; set; }
 
 		[Required]
 		public DateTime Established { get; set; }

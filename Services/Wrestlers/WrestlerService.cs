@@ -19,7 +19,7 @@ public class WrestlerService : IWrestlerService
 			{
 				Id = w.Id,
 				Name = w.Name,
-				Retired = w.Retired
+				Status = w.Status
 			}).ToListAsync();
 
 		return wrestlers;
