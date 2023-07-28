@@ -86,7 +86,7 @@ namespace WrestlingMVC.Controllers
 			if (model is null)
 				return NotFound();
 
-			return View("details", model);
+			return View("detail", model);
 		}
 	}
 }
