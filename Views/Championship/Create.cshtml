@@ -11,7 +11,7 @@
     <div class="form-group col-md-6">
         <label asp-for="PromotionId">Promotion</label>
         <select asp-for="PromotionId" asp-items="@Model.Promotions" class="form-control">
-            <option value="">Select a Promotion</option>
+            <option value="">--Select a Promotion--</option>
         </select>
         <span asp-validation-for="PromotionId" class="text-danger"></span>
     </div>
