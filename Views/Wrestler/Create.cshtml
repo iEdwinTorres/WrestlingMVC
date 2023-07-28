@@ -22,7 +22,7 @@
 
 	<div class="form-group">
 		<label asp-for="Status">Active</label>
-		<input asp-for="Status" type="checkbox" class="form-check-input" />
+		<input asp-for="Status" type="checkbox" class="form-check-input" id="statusCheckbox" />
 		<span asp-validation-for="Status" class="text-danger"></span>
 	</div>
 
@@ -47,11 +47,11 @@
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 	<script>
-		// Function to toggle visibility and required validation of the Retired field
+		// Function to toggle disabled attribute of the Retired field
 		function toggleRetiredField() {
 				const RetiredField = document.getElementById("RetiredField");
-				const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
 				const RetiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
+				const statusCheckbox = document.getElementById("statusCheckbox");
 
 				if (statusCheckbox && RetiredField && RetiredInput) {
 					if (statusCheckbox.checked) {
@@ -65,10 +65,10 @@
 		}
 
 		// Add event listener to the Status checkbox to handle changes
-		const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+		const statusCheckbox = document.getElementById("statusCheckbox");
 		statusCheckbox.addEventListener("change", toggleRetiredField);
 
-		// Initial call to toggle the field visibility on page load
+		// Initial call to toggle the field disabled attribute on page load
 		toggleRetiredField();
 	</script>
 }
