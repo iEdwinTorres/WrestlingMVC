@@ -6,4 +6,5 @@ public interface IChampionshipService
 {
 	Task<IEnumerable<ChampionshipListItem>> GetAllChampionshipsAsync();
 	Task<bool> CreateChampionshipAsync(ChampionshipCreate model);
+	Task<ChampionshipDetail?> GetChampionshipAsync(int id);
 }

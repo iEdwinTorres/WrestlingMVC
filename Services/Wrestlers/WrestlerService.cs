@@ -40,4 +40,42 @@ public class WrestlerService : IWrestlerService
 
 		return wrestlers;
 	}
+
+	public async Task<WrestlerDetail?> GetWrestlerAsync(int id)
+	{
+		Wrestler? wrestler = await _context.Wrestlers
+			 .FirstOrDefaultAsync(w => w.Id == id);
+
+		if (wrestler is null)
+		{
+			return null; // Return null if no wrestler is found with the specified ID
+		}
+
+		// If wrestler is not null, create and return the WrestlerDetail object
+		return new WrestlerDetail
+		{
+			Id = wrestler.Id,
+			Name = wrestler.Name,
+			Picture = wrestler.Picture,
+			Status = wrestler.Status,
+			DateStart = wrestler.DateStart,
+			DateEnd = wrestler.DateEnd
+		};
+	}
+
+	public async Task<WrestlerDetail?> GetWrestlerDetailAsync(int id)
+	{
+		Wrestler? wrestler = await _context.Wrestlers
+			.FirstOrDefaultAsync(w => w.Id == id);
+
+		return wrestler is null ? null : new()
+		{
+			Id = wrestler.Id,
+			Name = wrestler.Name,
+			Picture = wrestler.Picture,
+			Status = wrestler.Status,
+			DateStart = wrestler.DateStart,
+			DateEnd = wrestler.DateEnd
+		};
+	}
 }

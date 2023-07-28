@@ -35,4 +35,15 @@ public class ChampionshipController : Controller
 
 	return RedirectToAction(nameof(Index));
 	}
+
+	[HttpGet]
+	public async Task<IActionResult> Details(int id)
+	{
+		ChampionshipDetail? model = await _service.GetChampionshipAsync(id);
+
+		if (model is null)
+			return NotFound();
+
+		return View("detail", model);
+	}
 }

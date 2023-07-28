@@ -1,0 +1,15 @@
+@model PromotionDetail
+@{
+	ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+<hr>
+
+	<img src="@Model.Logo" alt="@Model.Name Logo">
+
+<div>
+	<a asp-action="Index">Back to List</a>
+	<span>|</span>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>

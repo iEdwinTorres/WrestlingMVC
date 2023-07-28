@@ -35,4 +35,15 @@ public class PromotionController : Controller
 
 	return RedirectToAction(nameof(Index));
 	}
+
+	[HttpGet]
+	public async Task<IActionResult> Details(int id)
+	{
+		PromotionDetail? model = await _service.GetPromotionAsync(id);
+
+		if (model is null)
+			return NotFound();
+
+		return View("detail", model);
+	}
 }

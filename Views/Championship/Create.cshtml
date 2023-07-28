@@ -9,7 +9,7 @@
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <form asp-action="Create" method="post" class="row g-3">
 	<div class="col-ms-6">
-		<label asp-for="PromotionId" class="form-label">Promotion</label>
+		<label asp-for="PromotionId" class="form-label">Promotion Owner</label>
 		<input asp-for="PromotionId" class="form-control">
 		<span asp-validation-for="PromotionId" class="text-danger"></span>
 	</div>
@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="col-ms-6">
-		<label asp-for="Image" class="form-label"></label>
+		<label asp-for="Image" class="form-label">Image URL</label>
 		<input asp-for="Image" class="form-control">
 		<span asp-validation-for="Image" class="text-danger"></span>
 	</div>
@@ -38,7 +38,7 @@
 		<span asp-validation-for="Established" class="text-danger"></span>
 	</div>
 
-	<div class="col-ms-6" id="retiredField">
+	<div class="col-ms-6" id="RetiredField">
 		<label asp-for="Retired" class="form-label"></label>
 		<input asp-for="Retired" class="form-control">
 		<span asp-validation-for="Retired" class="text-danger"></span>
@@ -55,17 +55,17 @@
 	<script>
 		// Function to toggle visibility and required validation of the Retired field
 		function toggleRetiredField() {
-			const retiredField = document.getElementById("retiredField");
+			const RetiredField = document.getElementById("RetiredField");
 			const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
-			const retiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
+			const RetiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
 
-			if (statusCheckbox && retiredField && retiredInput) {
+			if (statusCheckbox && RetiredField && RetiredInput) {
 					if (statusCheckbox.checked) {
-						retiredField.style.display = "none";
-						retiredInput.removeAttribute("required");
+						RetiredField.style.display = "none";
+						RetiredInput.removeAttribute("required");
 					} else {
-						retiredField.style.display = "block";
-						retiredInput.setAttribute("required", "required");
+						RetiredField.style.display = "block";
+						RetiredInput.setAttribute("required", "required");
 					}
 			}
 		}

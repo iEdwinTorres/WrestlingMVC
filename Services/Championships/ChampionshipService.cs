@@ -39,4 +39,43 @@ public class ChampionshipService : IChampionshipService
 
 		return championships;
 	}
+
+	public async Task<ChampionshipDetail?> GetChampionshipAsync(int id)
+	{
+		Championship? championship = await _context.Championships
+			 .FirstOrDefaultAsync(c => c.Id == id);
+
+		if (championship is null)
+		{
+			return null; // Return null if no championship is found with the specified ID
+		}
+
+		// If championship is not null, create and return the ChampionshipDetail object
+		return new ChampionshipDetail
+		{
+			Id = championship.Id,
+			Name = championship.Name,
+			Image = championship.Image,
+			Status = championship.Status,
+			Established = championship.Established,
+			Retired = championship.Retired
+		};
+	}
+
+	public async Task<ChampionshipDetail?> GetChampionshipDetailAsync(int id)
+	{
+		Championship? championship = await _context.Championships
+			.FirstOrDefaultAsync(c => c.Id == id);
+		
+		return championship is null ? null : new()
+		{
+			Id = championship.Id,
+			PromotionId = championship.PromotionId,
+			Name = championship.Name,
+			Image = championship.Image,
+			Status = championship.Status,
+			Established = championship.Established,
+			Retired= championship.Retired
+		};
+	}
 }
