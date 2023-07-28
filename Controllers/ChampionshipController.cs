@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WrestlingMVC.Models.Championship;
-using WrestlingMVC.Models.Promotion; // Make sure to include the Promotion namespace if not already done
 using WrestlingMVC.Services.Championships;
 using WrestlingMVC.Services.Promotions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WrestlingMVC.Controllers
 {
@@ -112,10 +108,10 @@ namespace WrestlingMVC.Controllers
 		{
 			if (!ModelState.IsValid)
 				return View(model);
-			
+
 			if (await _championshipService.UpdateChampionshipAsync(model))
-				return RedirectToAction(nameof(Details), new { id = id});
-			
+				return RedirectToAction(nameof(Details), new { id = id });
+
 			ModelState.AddModelError("Save Error", "Could not update the Championship. Please try again.");
 			return View(model);
 		}

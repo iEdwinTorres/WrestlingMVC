@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WrestlingMVC.Data;
 using WrestlingMVC.Models.Championship;
-using System;
 
 namespace WrestlingMVC.Services.Championships;
 
