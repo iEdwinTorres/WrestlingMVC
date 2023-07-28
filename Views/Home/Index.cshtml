@@ -2,7 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <br>
+    @* Championship Index *@
+    <a asp-action="Index" asp-controller="Championship">Go to Championship List</a>
+    <br /><br />
+
+    @* Championship Create *@
+    <a asp-action="Create" asp-controller="Championship">Create a New Championship</a>
+    <br /><br /><hr>
+
+    <br>
+    @* Promotion List *@
+    <a asp-action="Index" asp-controller="Promotion">Go to Promotion List</a>
+    <br /><br />
+
+    @* Promotion Create *@
+    <a asp-action="Create" asp-controller="Promotion">Create a New Promotion</a>
+    <br /><br /><hr>
+
+    <br>
+    @* Wrestler List *@
+    <a asp-action="Index" asp-controller="Wrestler">Go to Wrestler List</a>
+    <br /><br />
+
+    @* Wrestler Create *@
+    <a asp-action="Create" asp-controller="Wrestler">Create a New Wrestler</a>
+    <br /><br /><hr>
 </div>
