@@ -6,16 +6,16 @@ namespace WrestlingMVC.Controllers;
 
 public class PromotionController : Controller
 {
-	private IPromotionService _service;
-	public PromotionController(IPromotionService service)
+	private IPromotionService _promotionService;
+	public PromotionController(IPromotionService promotionService)
 	{
-		_service = service;
+		_promotionService = promotionService;
 	}
 
 	[HttpGet]
 	public async Task<IActionResult> Index()
 	{
-		IEnumerable<PromotionListItem> promotions = await _service.GetAllPromotionsAsync();
+		IEnumerable<PromotionListItem> promotions = await _promotionService.GetAllPromotionsAsync();
 		return View(promotions);
 	}
 
@@ -31,19 +31,51 @@ public class PromotionController : Controller
 		if (!ModelState.IsValid)
 			return View(model);
 
-	await _service.CreatePromotionAsync(model);
+		await _promotionService.CreatePromotionAsync(model);
 
-	return RedirectToAction(nameof(Index));
+		return RedirectToAction(nameof(Index));
 	}
 
 	[HttpGet]
 	public async Task<IActionResult> Details(int id)
 	{
-		PromotionDetail? model = await _service.GetPromotionAsync(id);
+		PromotionDetail? model = await _promotionService.GetPromotionAsync(id);
 
 		if (model is null)
 			return NotFound();
 
 		return View("detail", model);
+	}
+
+	[HttpGet]
+	public async Task<IActionResult> Edit(int id)
+	{
+		PromotionDetail? promotion = await _promotionService.GetPromotionAsync(id);
+		if (promotion is null)
+			return NotFound();
+
+		PromotionEdit model = new()
+		{
+			Id = promotion.Id,
+			Name = promotion.Name ?? "",
+			Image = promotion.Image ?? "",
+			Established = promotion.Established,
+			Retired = promotion.Retired,
+		};
+
+		return View(model);
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Edit(int id, PromotionEdit model)
+	{
+		if (!ModelState.IsValid)
+			return View(model);
+
+		if (await _promotionService.UpdatePromotionAsync(model))
+			return RedirectToAction(nameof(Details), new { id = id });
+
+		ModelState.AddModelError("Save Error", "Could not update the Promotion. Please try again.");
+		return View(model);
 	}
 }

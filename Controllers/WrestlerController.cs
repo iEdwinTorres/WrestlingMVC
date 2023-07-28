@@ -6,16 +6,16 @@ namespace WrestlingMVC.Controllers;
 
 public class WrestlerController : Controller
 {
-	private IWrestlerService _service;
-	public WrestlerController(IWrestlerService service)
+	private IWrestlerService _wrestlerService;
+	public WrestlerController(IWrestlerService wrestlerService)
 	{
-		_service = service;
+		_wrestlerService = wrestlerService;
 	}
 
 	[HttpGet]
 	public async Task<IActionResult> Index()
 	{
-		IEnumerable<WrestlerListItem> wrestlers = await _service.GetAllWrestlersAsync();
+		IEnumerable<WrestlerListItem> wrestlers = await _wrestlerService.GetAllWrestlersAsync();
 		return View(wrestlers);
 	}
 
@@ -31,7 +31,7 @@ public class WrestlerController : Controller
 		if (!ModelState.IsValid)
 			return View(model);
 
-	await _service.CreateWrestlerAsync(model);
+	await _wrestlerService.CreateWrestlerAsync(model);
 
 	return RedirectToAction(nameof(Index));
 	}
@@ -39,11 +39,43 @@ public class WrestlerController : Controller
 	[HttpGet]
 	public async Task<IActionResult> Details(int id)
 	{
-		WrestlerDetail? model = await _service.GetWrestlerAsync(id);
+		WrestlerDetail? model = await _wrestlerService.GetWrestlerAsync(id);
 
 		if (model is null)
 			return NotFound();
 
 		return View("detail", model);
+	}
+
+	[HttpGet]
+	public async Task<IActionResult> Edit(int id)
+	{
+		WrestlerDetail? wrestler = await _wrestlerService.GetWrestlerAsync(id);
+		if (wrestler is null)
+			return NotFound();
+
+		WrestlerEdit model = new()
+		{
+			Id = wrestler.Id,
+			Name = wrestler.Name ?? "",
+			Image = wrestler.Image ?? "",
+			Established = wrestler.Established,
+			Retired = wrestler.Retired,
+		};
+
+		return View(model);
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Edit(int id, WrestlerEdit model)
+	{
+		if (!ModelState.IsValid)
+			return View(model);
+
+		if (await _wrestlerService.UpdateWrestlerAsync(model))
+			return RedirectToAction(nameof(Details), new { id = id });
+
+		ModelState.AddModelError("Save Error", "Could not update the wrestler. Please try again.");
+		return View(model);
 	}
 }

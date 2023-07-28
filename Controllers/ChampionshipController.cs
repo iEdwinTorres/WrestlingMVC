@@ -77,7 +77,6 @@ namespace WrestlingMVC.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-
 		[HttpGet]
 		public async Task<IActionResult> Details(int id)
 		{
@@ -87,6 +86,38 @@ namespace WrestlingMVC.Controllers
 				return NotFound();
 
 			return View("detail", model);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Edit(int id)
+		{
+			ChampionshipDetail? championship = await _championshipService.GetChampionshipAsync(id);
+			if (championship is null)
+				return NotFound();
+
+			ChampionshipEdit model = new()
+			{
+				Id = championship.Id,
+				Name = championship.Name ?? "",
+				Image = championship.Image ?? "",
+				Established = championship.Established,
+				Retired = championship.Retired,
+			};
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Edit(int id, ChampionshipEdit model)
+		{
+			if (!ModelState.IsValid)
+				return View(model);
+			
+			if (await _championshipService.UpdateChampionshipAsync(model))
+				return RedirectToAction(nameof(Details), new { id = id});
+			
+			ModelState.AddModelError("Save Error", "Could not update the Championship. Please try again.");
+			return View(model);
 		}
 	}
 }

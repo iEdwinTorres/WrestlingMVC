@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using WrestlingMVC.Data;
 using WrestlingMVC.Models.Promotion;
 
-namespace WrestlingMVC.Services.Promotions
-{
+namespace WrestlingMVC.Services.Promotions;
+
 	public class PromotionService : IPromotionService
 	{
 		private readonly WrestlingDbContext _context;
@@ -83,5 +83,19 @@ namespace WrestlingMVC.Services.Promotions
 				Retired = promotion.Retired
 			};
 		}
+
+		public async Task<bool> UpdatePromotionAsync(PromotionEdit model)
+		{
+			Promotion? entity = await _context.Promotions.FindAsync(model.Id);
+
+			if (entity is null)
+				return false;
+			
+			entity.Name = model.Name;
+			entity.Image = model.Image;
+			entity.Status = model.Status;
+			entity.Established = model.Established;
+			entity.Retired = model.Retired;
+			return await _context.SaveChangesAsync() == 1;
+		}
 	}
-}

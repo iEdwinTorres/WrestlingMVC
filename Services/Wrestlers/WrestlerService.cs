@@ -78,4 +78,19 @@ public class WrestlerService : IWrestlerService
 			Retired = wrestler.Retired
 		};
 	}
+
+	public async Task<bool> UpdateWrestlerAsync(WrestlerEdit model)
+	{
+		Wrestler? entity = await _context.Wrestlers.FindAsync(model.Id);
+
+		if (entity is null)
+			return false;
+
+		entity.Name = model.Name;
+		entity.Image = model.Image;
+		entity.Status = model.Status;
+		entity.Established = model.Established;
+		entity.Retired = model.Retired;
+		return await _context.SaveChangesAsync() == 1;
+	}
 }

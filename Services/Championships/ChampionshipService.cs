@@ -3,8 +3,8 @@ using WrestlingMVC.Data;
 using WrestlingMVC.Models.Championship;
 using System;
 
-namespace WrestlingMVC.Services.Championships
-{
+namespace WrestlingMVC.Services.Championships;
+
 	public class ChampionshipService : IChampionshipService
 	{
 		private WrestlingDbContext _context;
@@ -79,5 +79,19 @@ namespace WrestlingMVC.Services.Championships
 				Retired = championship.Retired
 			};
 		}
+
+		public async Task<bool> UpdateChampionshipAsync(ChampionshipEdit model)
+		{
+			Championship? entity = await _context.Championships.FindAsync(model.Id);
+
+			if (entity is null)
+				return false;
+			
+			entity.Name = model.Name;
+			entity.Image = model.Image;
+			entity.Status = model.Status;
+			entity.Established = model.Established;
+			entity.Retired = model.Retired;
+			return await _context.SaveChangesAsync() == 1;
+		}
 	}
-}
