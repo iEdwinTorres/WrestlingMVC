@@ -17,10 +17,10 @@ public class WrestlerService : IWrestlerService
 		Wrestler entity = new()
 		{
 			Name = model.Name,
-			Picture = model.Picture,
+			Image = model.Image,
 			Status = model.Status,
-			DateStart = model.DateStart,
-			DateEnd = model.DateEnd
+			Established = model.Established,
+			Retired = model.Retired
 		};
 		_context.Wrestlers.Add(entity);
 		return await _context.SaveChangesAsync() == 1;
@@ -34,8 +34,8 @@ public class WrestlerService : IWrestlerService
 				Id = w.Id,
 				Name = w.Name,
 				Status = w.Status,
-				DateStart = w.DateStart,
-				DateEnd = w.DateEnd
+				Established = w.Established,
+				Retired = w.Retired
 			}).ToListAsync();
 
 		return wrestlers;
@@ -56,10 +56,10 @@ public class WrestlerService : IWrestlerService
 		{
 			Id = wrestler.Id,
 			Name = wrestler.Name,
-			Picture = wrestler.Picture,
+			Image = wrestler.Image,
 			Status = wrestler.Status,
-			DateStart = wrestler.DateStart,
-			DateEnd = wrestler.DateEnd
+			Established = wrestler.Established.HasValue ? (DateTime)wrestler.Established : DateTime.MinValue,
+			Retired = wrestler.Retired
 		};
 	}
 
@@ -72,10 +72,10 @@ public class WrestlerService : IWrestlerService
 		{
 			Id = wrestler.Id,
 			Name = wrestler.Name,
-			Picture = wrestler.Picture,
+			Image = wrestler.Image,
 			Status = wrestler.Status,
-			DateStart = wrestler.DateStart,
-			DateEnd = wrestler.DateEnd
+			Established = wrestler.Established.HasValue ? (DateTime)wrestler.Established : DateTime.MinValue,
+			Retired = wrestler.Retired
 		};
 	}
 }

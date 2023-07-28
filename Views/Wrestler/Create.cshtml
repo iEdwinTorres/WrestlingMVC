@@ -15,9 +15,9 @@
 	</div>
 
 	<div class="col-ms-6">
-		<label asp-for="Picture" class="form-label">Picture URL</label>
-		<input asp-for="Picture" class="form-control">
-		<span asp-validation-for="Picture" class="text-danger"></span>
+		<label asp-for="Image" class="form-label">Image URL</label>
+		<input asp-for="Image" class="form-control">
+		<span asp-validation-for="Image" class="text-danger"></span>
 	</div>
 
 	<div class="form-group">
@@ -27,15 +27,15 @@
 	</div>
 
 	<div class="col-ms-6">
-		<label asp-for="DateStart" class="form-label"></label>
-		<input asp-for="DateStart" class="form-control">
-		<span asp-validation-for="DateStart" class="text-danger"></span>
+		<label asp-for="Established" class="form-label"></label>
+		<input asp-for="Established" type="date" class="form-control">
+		<span asp-validation-for="Established" class="text-danger"></span>
 	</div>
 
-	<div class="col-ms-6" id="DateEndField">
-		<label asp-for="DateEnd" class="form-label"></label>
-		<input asp-for="DateEnd" class="form-control">
-		<span asp-validation-for="DateEnd" class="text-danger"></span>
+	<div class="col-ms-6" id="RetiredField">
+		<label asp-for="Retired" class="form-label"></label>
+		<input asp-for="Retired" type="date" class="form-control">
+		<span asp-validation-for="Retired" class="text-danger"></span>
 	</div>
 
 	<div class="col d-flex justify-content-between align-items-baseline">
@@ -47,28 +47,28 @@
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 	<script>
-		// Function to toggle visibility and required validation of the DateEnd field
-		function toggleDateEndField() {
-			const DateEndField = document.getElementById("DateEndField");
-			const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
-			const DateEndInput = document.getElementById("@Html.IdFor(m => m.DateEnd)");
+		// Function to toggle visibility and required validation of the Retired field
+		function toggleRetiredField() {
+				const RetiredField = document.getElementById("RetiredField");
+				const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
+				const RetiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
 
-			if (statusCheckbox && DateEndField && DateEndInput) {
+				if (statusCheckbox && RetiredField && RetiredInput) {
 					if (statusCheckbox.checked) {
-						DateEndField.style.display = "none";
-						DateEndInput.removeAttribute("required");
+						RetiredField.style.display = "none";
+						RetiredInput.removeAttribute("required");
 					} else {
-						DateEndField.style.display = "block";
-						DateEndInput.setAttribute("required", "required");
+						RetiredField.style.display = "block";
+						RetiredInput.setAttribute("required", "required");
 					}
-			}
+				}
 		}
 
 		// Add event listener to the Status checkbox to handle changes
 		const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
-		statusCheckbox.addEventListener("change", toggleDateEndField);
+		statusCheckbox.addEventListener("change", toggleRetiredField);
 
 		// Initial call to toggle the field visibility on page load
-		toggleDateEndField();
+		toggleRetiredField();
 	</script>
 }

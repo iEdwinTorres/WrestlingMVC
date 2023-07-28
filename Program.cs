@@ -13,6 +13,7 @@ builder.Services.AddDbContext<WrestlingDbContext>(options => options.UseSqlServe
 	 builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
+
 builder.Services.AddScoped<IChampionshipService, ChampionshipService>();
 builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddScoped<IWrestlerService, WrestlerService>();
@@ -31,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 
 app.UseAuthorization();
 

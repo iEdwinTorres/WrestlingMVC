@@ -1,7 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WrestlingMVC.Data;
 using WrestlingMVC.Models.Promotion;
 
@@ -21,10 +18,10 @@ namespace WrestlingMVC.Services.Promotions
 			Promotion entity = new()
 			{
 				Name = model.Name,
-				Logo = model.Logo,
+				Image = model.Image,
 				Status = model.Status,
 				Established = model.Established,
-				Shuttered = model.Shuttered
+				Retired = model.Retired
 			};
 			_context.Promotions.Add(entity);
 			return await _context.SaveChangesAsync() == 1;
@@ -58,10 +55,10 @@ namespace WrestlingMVC.Services.Promotions
 			{
 				Id = promotion.Id,
 				Name = promotion.Name,
-				Logo = promotion.Logo,
+				Image = promotion.Image,
 				Status = promotion.Status,
-				Established = promotion.Established,
-				Shuttered = promotion.Shuttered
+				Established = promotion.Established.HasValue ? (DateTime)promotion.Established : DateTime.MinValue,
+				Retired = promotion.Retired
 			};
 		}
 
@@ -80,10 +77,10 @@ namespace WrestlingMVC.Services.Promotions
 			{
 				Id = promotion.Id,
 				Name = promotion.Name,
-				Logo = promotion.Logo,
+				Image = promotion.Image,
 				Status = promotion.Status,
-				Established = promotion.Established,
-				Shuttered = promotion.Shuttered
+				Established = promotion.Established.HasValue ? (DateTime)promotion.Established : DateTime.MinValue,
+				Retired = promotion.Retired
 			};
 		}
 	}

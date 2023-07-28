@@ -2,21 +2,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WrestlingMVC.Models.Wrestler;
 
-public class WrestlerCreate
+public class WrestlerCreate : IValidatableObject
 {
 	[Required]
 	[StringLength(100)]
-	public string Name { get; set; } = string.Empty;
+	public string? Name { get; set; }
 
-	public string Picture { get; set; } = string.Empty;
-
-	public bool Status { get; set; } // No default value set
-
-	[RequiredIf("Status", true, ErrorMessage = "The Date End field is required when the Wrestler is active.")]
-	public DateTime? DateEnd { get; set; }
+	[StringLength(500)]
+	public string? Image { get; set; }
 
 	[Required]
-	public DateTime DateStart { get; set; }
+	public bool Status { get; set; }
+
+	[RequiredIf("Status", true, ErrorMessage = "The Retired field is required when the Wrestler is active.")]
+	public DateTime? Retired { get; set; }
+
+	[Required]
+	public DateTime? Established { get; set; }
 
 	public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
 	{

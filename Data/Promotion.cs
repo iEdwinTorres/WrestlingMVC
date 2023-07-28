@@ -1,25 +1,29 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WrestlingMVC.Data;
-
-public class Promotion
+namespace WrestlingMVC.Data
 {
-	[Key]
-	public int Id { get; set; }
+	public class Promotion
+	{
+		[Key]
+		public int Id { get; set; }
 
-	[Required]
-	[MaxLength(100)]
-	public string? Name { get; set; }
+		[Required]
+		[StringLength(100)]
+		public string? Name { get; set; }
 
-	[Required]
-	[MaxLength(100)]
-	public string? Logo { get; set; }
+		[StringLength(500)]
+		public string? Image { get; set; }
 
-	[Required]
-	public bool Status { get; set; }
+		[Required]
+		public bool Status { get; set; }
 
-	[Required]
-	public DateTime Established { get; set; }
+		[Required]
+		[Display(Name = "Established")]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime? Established { get; set; }
 
-	public DateTime? Shuttered { get; set; }
+		[Display(Name = "Retired")]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime? Retired { get; set; }
+	}
 }

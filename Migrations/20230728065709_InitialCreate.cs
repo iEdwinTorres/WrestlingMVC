@@ -18,10 +18,10 @@ namespace WrestlingMVC.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Logo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Defunct = table.Column<bool>(type: "bit", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     Established = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Shuttered = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Retired = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,10 +35,10 @@ namespace WrestlingMVC.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Retired = table.Column<bool>(type: "bit", nullable: false),
-                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Image = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Established = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Retired = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,10 +53,10 @@ namespace WrestlingMVC.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PromotionId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Defunct = table.Column<bool>(type: "bit", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     Established = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Retired = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Retired = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -8,17 +8,21 @@ public class Wrestler
 	public int Id { get; set; }
 
 	[Required]
-	[MaxLength(100)]
+	[StringLength(100)]
 	public string? Name { get; set; }
 
-	[MaxLength(100)]
-	public string? Picture { get; set; }
+	[StringLength(500)]
+	public string? Image { get; set; }
 
 	[Required]
 	public bool Status { get; set; }
 
 	[Required]
-	public DateTime DateStart { get; set; }
+	[Display(Name = "Established")]
+	[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+	public DateTime? Established { get; set; }
 
-	public DateTime? DateEnd { get; set; }
+	[Display(Name = "Retired")]
+	[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+	public DateTime? Retired { get; set; }
 }

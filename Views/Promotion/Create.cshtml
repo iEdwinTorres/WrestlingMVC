@@ -15,27 +15,27 @@
 	</div>
 
 	<div class="col-ms-6">
-		<label asp-for="Logo" class="form-label">Logo URL</label>
-		<input asp-for="Logo" class="form-control">
-		<span asp-validation-for="Logo" class="text-danger"></span>
+		<label asp-for="Image" class="form-label">Image URL</label>
+		<input asp-for="Image" class="form-control">
+		<span asp-validation-for="Image" class="text-danger"></span>
 	</div>
 
 	<div class="form-group">
 		<label asp-for="Status">Active</label>
-		<input asp-for="Status" type="checkbox" class="form-check-input" />
+		<input asp-for="Status" type="checkbox" class="form-check-input" id="statusCheckbox" />
 		<span asp-validation-for="Status" class="text-danger"></span>
 	</div>
 
 	<div class="col-ms-6">
 		<label asp-for="Established" class="form-label"></label>
-		<input asp-for="Established" class="form-control">
+		<input asp-for="Established" type="date" class="form-control">
 		<span asp-validation-for="Established" class="text-danger"></span>
 	</div>
 
-	<div class="col-ms-6" id="ShutteredField">
-		<label asp-for="Shuttered" class="form-label"></label>
-		<input asp-for="Shuttered" class="form-control">
-		<span asp-validation-for="Shuttered" class="text-danger"></span>
+	<div class="col-ms-6" id="RetiredField">
+		<label asp-for="Retired" class="form-label"></label>
+		<input asp-for="Retired" type="date" class="form-control">
+		<span asp-validation-for="Retired" class="text-danger"></span>
 	</div>
 
 	<div class="col d-flex justify-content-between align-items-baseline">
@@ -47,28 +47,28 @@
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 	<script>
-		// Function to toggle visibility and required validation of the Shuttered field
-		function toggleShutteredField() {
-			const ShutteredField = document.getElementById("ShutteredField");
-			const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
-			const ShutteredInput = document.getElementById("@Html.IdFor(m => m.Shuttered)");
+		// Function to toggle disabled attribute of the Retired field
+		function toggleRetiredField() {
+				const RetiredField = document.getElementById("RetiredField");
+				const RetiredInput = document.getElementById("@Html.IdFor(m => m.Retired)");
+				const statusCheckbox = document.getElementById("statusCheckbox");
 
-			if (statusCheckbox && ShutteredField && ShutteredInput) {
+				if (statusCheckbox && RetiredField && RetiredInput) {
 					if (statusCheckbox.checked) {
-						ShutteredField.style.display = "none";
-						ShutteredInput.removeAttribute("required");
+						RetiredField.style.display = "none";
+						RetiredInput.removeAttribute("required");
 					} else {
-						ShutteredField.style.display = "block";
-						ShutteredInput.setAttribute("required", "required");
+						RetiredField.style.display = "block";
+						RetiredInput.setAttribute("required", "required");
 					}
-			}
+				}
 		}
 
 		// Add event listener to the Status checkbox to handle changes
-		const statusCheckbox = document.getElementById("@Html.IdFor(m => m.Status)");
-		statusCheckbox.addEventListener("change", toggleShutteredField);
+		const statusCheckbox = document.getElementById("statusCheckbox");
+		statusCheckbox.addEventListener("change", toggleRetiredField);
 
-		// Initial call to toggle the field visibility on page load
-		toggleShutteredField();
+		// Initial call to toggle the field disabled attribute on page load
+		toggleRetiredField();
 	</script>
 }

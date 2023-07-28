@@ -6,13 +6,13 @@ public class WrestlerDetail
 
 		public string? Name { get; set; }
 
-		public string? Picture { get; set; }
+		public string? Image { get; set; }
 
 		public bool Status { get; set; }
 
-		public DateTime DateStart { get; set; }
+		public DateTime Established { get; set; }
 
 		// Nullable DateTime property
-		public DateTime? DateEnd { get; set; }
+		public DateTime? Retired { get; set; }
 
 }

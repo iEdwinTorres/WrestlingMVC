@@ -2,21 +2,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WrestlingMVC.Models.Promotion;
 
-public class PromotionCreate
+public class PromotionCreate : IValidatableObject
 {
 	[Required]
 	[StringLength(100)]
-	public string Name { get; set; } = string.Empty;
+	public string? Name { get; set; }
 
-	public string Logo { get; set; } = string.Empty;
-
-	public bool Status { get; set; } // No default value set
-
-	[RequiredIf("Status", true, ErrorMessage = "The Shuttered field is required when the Promotion is active.")]
-	public DateTime? Shuttered { get; set; }
+	[StringLength(500)]
+	public string? Image { get; set; }
 
 	[Required]
-	public DateTime Established { get; set; }
+	public bool Status { get; set; }
+
+	[RequiredIf("Status", true, ErrorMessage = "This field is required when the Promotion is active.")]
+	public DateTime? Retired { get; set; }
+
+	[Required]
+	public DateTime? Established { get; set; }
 
 	public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
 	{

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace WrestlingMVC.Data
@@ -15,15 +14,19 @@ namespace WrestlingMVC.Data
 		[StringLength(100)]
 		public string? Name { get; set; }
 
+		[StringLength(500)]
 		public string? Image { get; set; }
 
 		[Required]
 		public bool Status { get; set; }
 
 		[Required]
-		public DateTime Established { get; set; }
+		[Display(Name = "Established")]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime? Established { get; set; }
 
-		// Nullable DateTime property
+		[Display(Name = "Retired")]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime? Retired { get; set; }
 
 		// Navigation property to the Promotion entity

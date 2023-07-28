@@ -12,8 +12,8 @@ using WrestlingMVC.Data;
 namespace WrestlingMVC.Migrations
 {
     [DbContext(typeof(WrestlingDbContext))]
-    [Migration("20230727041630_UpdateToUseStatus")]
-    partial class UpdateToUseStatus
+    [Migration("20230728065709_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,13 +33,13 @@ namespace WrestlingMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Established")
+                    b.Property<DateTime?>("Established")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -49,7 +49,7 @@ namespace WrestlingMVC.Migrations
                     b.Property<int>("PromotionId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Retired")
+                    b.Property<DateTime?>("Retired")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
@@ -70,20 +70,20 @@ namespace WrestlingMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Established")
+                    b.Property<DateTime?>("Established")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Logo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Image")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("Shuttered")
+                    b.Property<DateTime?>("Retired")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
@@ -131,20 +131,21 @@ namespace WrestlingMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DateEnd")
+                    b.Property<DateTime?>("Established")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateStart")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Image")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Picture")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<DateTime?>("Retired")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

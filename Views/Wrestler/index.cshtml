@@ -14,10 +14,10 @@
 				@Html.DisplayNameFor(model => model.Status)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.DateStart)
+				@Html.DisplayNameFor(model => model.Established)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.DateEnd)
+				@Html.DisplayNameFor(model => model.Retired)
 			</th>
 		</tr>
 	</thead>
@@ -32,10 +32,10 @@
 					@item.Status
 				</td>
 				<td>
-					@item.DateStart
+					@item.Established
 				</td>
 				<td>
-					@item.DateEnd
+					@item.Retired
 				</td>
 				<td>
 					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
